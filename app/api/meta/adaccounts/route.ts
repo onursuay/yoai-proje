@@ -1,38 +1,36 @@
-import { NextRequest, NextResponse } from "next/server";
-import { metaFetch, formatMetaError } from "@/lib/metaFetch";
+import { NextResponse } from "next/server";
 
-const API_VERSION = process.env.META_API_VERSION || "v24.0";
+export const runtime = "nodejs";
 
-export async function GET(request: NextRequest) {
+function getEnv(name: string) {
+  const v = process.env[name];
+  if (!v) throw new Error(`Missing env: ${name}`);
+  return v;
+}
+
+export async function GET() {
   try {
-    const baseUrl = `https://graph.facebook.com/${API_VERSION}/me/adaccounts`;
-    const params: Record<string, string> = {
-      fields: "name,account_id,account_status,currency",
-      limit: "100",
-    };
+    const token = getEnv("META_ACCESS_TOKEN");
+    const version = process.env.META_API_VERSION || "v24.0";
 
-    const data = await metaFetch<{
-      data: Array<{
-        name: string;
-        account_id: string;
-        account_status: number;
-        currency: string;
-      }>;
-      paging?: {
-        cursors?: {
-          after?: string;
-        };
-        next?: string;
-      };
-    }>(baseUrl, params, { ttl: 300000 }); // 5 minutes cache
+    const url = new URL(`https://graph.facebook.com/${version}/me/adaccounts`);
+    url.searchParams.set("fields", "name,account_id,account_status,currency");
+    url.searchParams.set("limit", "100");
+    url.searchParams.set("access_token", token);
 
-    return NextResponse.json(data);
-  } catch (error: any) {
-    console.error("Meta adaccounts error:", error);
-    return NextResponse.json(
-      { error: formatMetaError(error) },
-      { status: error?.status || 500 }
-    );
+    const res = await fetch(url.toString(), { cache: "no-store" });
+    const json = await res.json();
+
+    if (!res.ok || json?.error) {
+      return NextResponse.json(
+        { ok: false, source: "meta", status: res.status, error: json?.error ?? json },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ ok: true, data: json.data ?? [], paging: json.paging ?? null });
+  } catch (e: any) {
+    return NextResponse.json({ ok: false, error: e?.message ?? "Unknown error" }, { status: 500 });
   }
 }
 
