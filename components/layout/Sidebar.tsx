@@ -1,6 +1,8 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import Image from "next/image";
+import type { LucideIcon } from "lucide-react";
 import {
   Zap,
   Settings,
@@ -20,8 +22,6 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_ITEMS } from "@/lib/constants";
-import { MetaIcon } from "@/components/icons/MetaIcon";
-import { GoogleIcon } from "@/components/icons/GoogleIcon";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -37,6 +37,10 @@ import {
 } from "@/components/ui/collapsible";
 import { useState } from "react";
 
+type MenuIcon =
+  | { type: "lucide"; icon: LucideIcon }
+  | { type: "image"; src: string; alt: string };
+
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Zap,
   Settings,
@@ -50,6 +54,23 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Link2,
   User,
 };
+
+function MenuIconView({ icon }: { icon: MenuIcon }) {
+  if (icon.type === "lucide") {
+    const Icon = icon.icon;
+    return <Icon className="h-4 w-4" aria-hidden="true" />;
+  }
+  return (
+    <Image
+      src={icon.src}
+      alt={icon.alt}
+      width={16}
+      height={16}
+      className="h-4 w-4"
+      priority
+    />
+  );
+}
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -120,7 +141,12 @@ export function Sidebar() {
                   <div className="ml-8 mt-1 space-y-0.5">
                     {item.children?.map((child) => {
                       const childActive = isActive(child.href);
-                      const ChildIcon = child.label === "Meta" ? MetaIcon : child.label === "Google" ? GoogleIcon : null;
+                      const childIcon: MenuIcon =
+                        child.label === "Meta"
+                          ? { type: "image", src: "/icons/meta.svg", alt: "Meta" }
+                          : child.label === "Google"
+                          ? { type: "image", src: "/icons/google.svg", alt: "Google" }
+                          : { type: "lucide", icon: Zap };
                       return (
                         <button
                           key={child.href}
@@ -132,7 +158,7 @@ export function Sidebar() {
                               : "text-gray-600 hover:bg-gray-50"
                           )}
                         >
-                          {ChildIcon && <ChildIcon className="h-4 w-4" />}
+                          <MenuIconView icon={childIcon} />
                           <span>{child.label}</span>
                         </button>
                       );
