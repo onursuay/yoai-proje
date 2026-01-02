@@ -138,10 +138,20 @@ export function Sidebar() {
                           : child.label === "Google"
                           ? { type: "brand", name: "google" }
                           : { type: "lucide", icon: Zap };
+                      // Sadece "Reklam" grubundaki Meta ve Google linklerine stopPropagation ekle
+                      const isReklamGroup = item.label === "Reklam";
+                      const isMetaOrGoogle = child.label === "Meta" || child.label === "Google";
+                      const shouldStopPropagation = isReklamGroup && isMetaOrGoogle;
+                      
                       return (
                         <button
                           key={child.href}
-                          onClick={() => router.push(child.href)}
+                          onClick={(e) => {
+                            if (shouldStopPropagation) {
+                              e.stopPropagation();
+                            }
+                            router.push(child.href);
+                          }}
                           className={cn(
                             "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors",
                             childActive
