@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
+import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import {
   Zap,
@@ -138,20 +139,37 @@ export function Sidebar() {
                           : child.label === "Google"
                           ? { type: "brand", name: "google" }
                           : { type: "lucide", icon: Zap };
-                      // Sadece "Reklam" grubundaki Meta ve Google linklerine stopPropagation ekle
-                      const isReklamGroup = item.label === "Reklam";
-                      const isMetaOrGoogle = child.label === "Meta" || child.label === "Google";
-                      const shouldStopPropagation = isReklamGroup && isMetaOrGoogle;
+                      
+                      // Sadece "Reklam" grubundaki Meta ve Google için Link kullan
+                      const isReklamMetaOrGoogle = item.label === "Reklam" && (child.label === "Meta" || child.label === "Google");
+                      
+                      if (isReklamMetaOrGoogle) {
+                        return (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            legacyBehavior
+                          >
+                            <a
+                              onClick={(e) => e.stopPropagation()}
+                              className={cn(
+                                "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors",
+                                childActive
+                                  ? "bg-green-50 text-green-700 font-medium"
+                                  : "text-gray-600 hover:bg-gray-50"
+                              )}
+                            >
+                              <MenuIconView icon={childIcon} />
+                              <span>{child.label}</span>
+                            </a>
+                          </Link>
+                        );
+                      }
                       
                       return (
                         <button
                           key={child.href}
-                          onClick={(e) => {
-                            if (shouldStopPropagation) {
-                              e.stopPropagation();
-                            }
-                            router.push(child.href);
-                          }}
+                          onClick={() => router.push(child.href)}
                           className={cn(
                             "flex w-full items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors",
                             childActive
