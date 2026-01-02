@@ -20,6 +20,8 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SIDEBAR_ITEMS } from "@/lib/constants";
+import { MetaIcon } from "@/components/icons/MetaIcon";
+import { GoogleIcon } from "@/components/icons/GoogleIcon";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -118,6 +120,7 @@ export function Sidebar() {
                   <div className="ml-8 mt-1 space-y-0.5">
                     {item.children?.map((child) => {
                       const childActive = isActive(child.href);
+                      const ChildIcon = child.label === "Meta" ? MetaIcon : child.label === "Google" ? GoogleIcon : null;
                       return (
                         <button
                           key={child.href}
@@ -129,6 +132,7 @@ export function Sidebar() {
                               : "text-gray-600 hover:bg-gray-50"
                           )}
                         >
+                          {ChildIcon && <ChildIcon className="h-4 w-4" />}
                           <span>{child.label}</span>
                         </button>
                       );
