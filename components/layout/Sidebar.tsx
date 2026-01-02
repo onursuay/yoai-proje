@@ -80,7 +80,7 @@ export function Sidebar() {
             const hasActiveChild = item.children?.some((child) =>
               isActive(child.href)
             );
-            const Icon = iconMap[item.icon] || Megaphone;
+            const Icon = iconMap[item.icon] || Zap;
 
             return (
               <Collapsible
