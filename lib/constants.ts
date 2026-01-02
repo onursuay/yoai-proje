@@ -1,7 +1,7 @@
 export const SIDEBAR_ITEMS = [
   {
     label: "Reklam",
-    icon: "Megaphone",
+    icon: "Zap",
     children: [
       { label: "Meta", href: "/reklam/meta", badge: null },
       { label: "Google", href: "/reklam/google", badge: null },
@@ -9,7 +9,7 @@ export const SIDEBAR_ITEMS = [
   },
   {
     label: "Strateji",
-    icon: "Target",
+    icon: "Settings",
     badge: "AI",
     children: [
       { label: "Meta", href: "/strateji/meta", badge: null },
@@ -63,14 +63,8 @@ export const SIDEBAR_ITEMS = [
   },
   {
     label: "Entegrasyon",
-    icon: "Link",
+    icon: "Link2",
     href: "/entegrasyon",
-    badge: null,
-  },
-  {
-    label: "Hesabım",
-    icon: "User",
-    href: "/hesabim",
     badge: null,
   },
 ] as const;

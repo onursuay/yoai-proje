@@ -30,12 +30,12 @@ export function Topbar({
   const setSelectedBusinessName = useAppStore((state) => state.setSelectedBusinessName);
 
   return (
-    <div className="flex h-20 items-center justify-between border-b bg-white px-6">
+    <div className="flex h-20 items-center justify-between border-b border-gray-200 bg-white px-6">
       <div className="flex items-center gap-4">
         {icon && <div className="text-gray-600">{icon}</div>}
         <div>
-          <h1 className="text-xl font-semibold">{title}</h1>
-          {subtitle && <p className="text-sm text-gray-500">{subtitle}</p>}
+          <h1 className="text-xl font-semibold text-gray-900">{title}</h1>
+          {subtitle && <p className="text-sm text-gray-500 mt-0.5">{subtitle}</p>}
         </div>
       </div>
       <div className="flex items-center gap-4">
@@ -44,7 +44,7 @@ export function Topbar({
             value={selectedBusinessName}
             onValueChange={setSelectedBusinessName}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-[180px] border-gray-200">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
