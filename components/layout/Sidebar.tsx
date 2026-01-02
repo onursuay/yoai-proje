@@ -69,7 +69,7 @@ export function Sidebar() {
         <div className="flex h-8 w-8 items-center justify-center">
           <CheckCircle2 className="h-6 w-6 text-green-600" />
         </div>
-        <span className="text-lg font-semibold text-green-600">iyzads</span>
+        <span className="text-lg font-semibold text-green-600">YoAi</span>
       </div>
 
       {/* Menu */}

@@ -10,12 +10,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { TrendingUp } from "lucide-react";
+import { MetaIcon } from "@/components/icons/MetaIcon";
 
 export default function OptimizasyonMetaPage() {
   return (
     <PageShell
-      icon={<TrendingUp className="h-5 w-5" />}
+      icon={<MetaIcon className="h-5 w-5" />}
       title="Facebook Optimizasyon"
       subtitle="Reklam performansınızı optimize edin"
     >

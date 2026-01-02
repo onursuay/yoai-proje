@@ -14,11 +14,11 @@ import {
 } from "@/components/ui/select";
 import { Sparkles } from "lucide-react";
 
-export default function IyzaiPage() {
+export default function YoaiPage() {
   return (
     <PageShell
       icon={<Sparkles className="h-5 w-5" />}
-      title="iyzAi"
+      title="YoAi"
       subtitle="AI destekli reklam yönetimi"
       businessSelector={true}
     >

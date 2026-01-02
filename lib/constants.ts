@@ -26,9 +26,9 @@ export const SIDEBAR_ITEMS = [
     ],
   },
   {
-    label: "iyzAi",
+    label: "YoAi",
     icon: "Sparkles",
-    href: "/iyzai",
+    href: "/yoai",
     badge: "⌘K",
   },
   {

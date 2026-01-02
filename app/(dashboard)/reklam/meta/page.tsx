@@ -9,9 +9,9 @@ import { MetaCampaignTable } from "@/components/meta/MetaCampaignTable";
 import { MetaAccountGate } from "@/components/meta/MetaAccountGate";
 import { Button } from "@/components/ui/button";
 import { TabsContent } from "@/components/ui/tabs";
-import { Megaphone } from "lucide-react";
 import { useAppStore } from "@/lib/store";
 import { formatDateRange } from "@/lib/format";
+import { MetaIcon } from "@/components/icons/MetaIcon";
 
 interface KPIMetrics {
   totalSpend: number;
@@ -101,7 +101,7 @@ export default function ReklamMetaPage() {
   if (!selectedAdAccountId) {
     return (
       <PageShell
-        icon={<Megaphone className="h-5 w-5" />}
+        icon={<MetaIcon className="h-5 w-5" />}
         title="Reklam Yöneticisi"
         subtitle="Meta reklam kampanyalarınızı yönetin"
       >
@@ -112,7 +112,7 @@ export default function ReklamMetaPage() {
 
   return (
     <PageShell
-      icon={<Megaphone className="h-5 w-5" />}
+      icon={<MetaIcon className="h-5 w-5" />}
       title="Reklam Yöneticisi"
       subtitle="Meta reklam kampanyalarınızı yönetin"
       action={

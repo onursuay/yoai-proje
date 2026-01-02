@@ -12,15 +12,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Target, Youtube } from "lucide-react";
+import { Youtube } from "lucide-react";
 import { useState } from "react";
+import { MetaIcon } from "@/components/icons/MetaIcon";
 
 export default function StratejiMetaPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <PageShell
-      icon={<Target className="h-5 w-5" />}
+      icon={<MetaIcon className="h-5 w-5" />}
       title="Strateji"
       subtitle="Meta reklam stratejinizi oluşturun"
     >

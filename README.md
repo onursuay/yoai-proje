@@ -1,6 +1,6 @@
-# YO Ads Dashboard
+# YoAi Dashboard
 
-iyzads dashboard UI/UX klonu - Next.js App Router projesi.
+YoAi reklam yönetim platformu - Next.js App Router projesi.
 
 ## Kurulum
 
@@ -31,5 +31,5 @@ npm run dev
 
 ## Referans Görseller
 
-Referans görseller `/reference/iyzads/` klasöründe yer almalıdır.
+Referans görseller `/reference/` klasöründe yer almalıdır.
 

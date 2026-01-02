@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "YO Ads - Reklam Yönetim Platformu",
+  title: "YoAi - Reklam Yönetim Platformu",
   description: "Reklam yönetim platformu",
 };
 

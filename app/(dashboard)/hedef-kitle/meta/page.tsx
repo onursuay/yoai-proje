@@ -13,12 +13,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Users } from "lucide-react";
+import { MetaIcon } from "@/components/icons/MetaIcon";
 
 export default function HedefKitleMetaPage() {
   return (
     <PageShell
-      icon={<Users className="h-5 w-5" />}
+      icon={<MetaIcon className="h-5 w-5" />}
       title="Hedef Kitle"
       subtitle="Reklam hedef kitlelerinizi yönetin"
     >
