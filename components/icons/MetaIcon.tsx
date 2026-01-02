@@ -13,4 +13,3 @@ export function MetaIcon({ className }: { className?: string }) {
     </svg>
   );
 }
-
