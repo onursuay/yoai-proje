@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { TabsContent } from "@/components/ui/tabs";
 import { useAppStore } from "@/lib/store";
 import { formatDateRange } from "@/lib/format";
-import { MetaIcon } from "@/components/icons/MetaIcon";
+import { BrandIcon } from "@/components/common/BrandIcon";
 
 interface KPIMetrics {
   totalSpend: number;
@@ -101,7 +101,7 @@ export default function ReklamMetaPage() {
   if (!selectedAdAccountId) {
     return (
       <PageShell
-        icon={<MetaIcon className="h-5 w-5" />}
+        icon={<BrandIcon name="meta" size={18} className="h-[18px] w-[18px]" />}
         title="Reklam Yöneticisi"
         subtitle="Meta reklam kampanyalarınızı yönetin"
       >
@@ -112,7 +112,7 @@ export default function ReklamMetaPage() {
 
   return (
     <PageShell
-      icon={<MetaIcon className="h-5 w-5" />}
+      icon={<BrandIcon name="meta" size={18} className="h-[18px] w-[18px]" />}
       title="Reklam Yöneticisi"
       subtitle="Meta reklam kampanyalarınızı yönetin"
       action={

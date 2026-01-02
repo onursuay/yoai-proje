@@ -1,7 +1,6 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import Image from "next/image";
 import type { LucideIcon } from "lucide-react";
 import {
   Zap,
@@ -36,10 +35,11 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { useState } from "react";
+import { BrandIcon } from "@/components/common/BrandIcon";
 
 type MenuIcon =
   | { type: "lucide"; icon: LucideIcon }
-  | { type: "image"; src: string; alt: string };
+  | { type: "brand"; name: "meta" | "google" };
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Zap,
@@ -60,16 +60,7 @@ function MenuIconView({ icon }: { icon: MenuIcon }) {
     const Icon = icon.icon;
     return <Icon className="h-4 w-4" aria-hidden="true" />;
   }
-  return (
-    <Image
-      src={icon.src}
-      alt={icon.alt}
-      width={16}
-      height={16}
-      className="h-4 w-4"
-      priority
-    />
-  );
+  return <BrandIcon name={icon.name} size={16} className="h-4 w-4" />;
 }
 
 export function Sidebar() {
@@ -143,9 +134,9 @@ export function Sidebar() {
                       const childActive = isActive(child.href);
                       const childIcon: MenuIcon =
                         child.label === "Meta"
-                          ? { type: "image", src: "/icons/meta.svg", alt: "Meta" }
+                          ? { type: "brand", name: "meta" }
                           : child.label === "Google"
-                          ? { type: "image", src: "/icons/google.svg", alt: "Google" }
+                          ? { type: "brand", name: "google" }
                           : { type: "lucide", icon: Zap };
                       return (
                         <button

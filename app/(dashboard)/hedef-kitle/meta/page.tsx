@@ -13,12 +13,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { MetaIcon } from "@/components/icons/MetaIcon";
+import { BrandIcon } from "@/components/common/BrandIcon";
 
 export default function HedefKitleMetaPage() {
   return (
     <PageShell
-      icon={<MetaIcon className="h-5 w-5" />}
+      icon={<BrandIcon name="meta" size={18} className="h-[18px] w-[18px]" />}
       title="Hedef Kitle"
       subtitle="Reklam hedef kitlelerinizi yönetin"
     >

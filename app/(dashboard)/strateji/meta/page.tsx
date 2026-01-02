@@ -14,14 +14,14 @@ import {
 } from "@/components/ui/select";
 import { Youtube } from "lucide-react";
 import { useState } from "react";
-import { MetaIcon } from "@/components/icons/MetaIcon";
+import { BrandIcon } from "@/components/common/BrandIcon";
 
 export default function StratejiMetaPage() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <PageShell
-      icon={<MetaIcon className="h-5 w-5" />}
+      icon={<BrandIcon name="meta" size={18} className="h-[18px] w-[18px]" />}
       title="Strateji"
       subtitle="Meta reklam stratejinizi oluşturun"
     >
